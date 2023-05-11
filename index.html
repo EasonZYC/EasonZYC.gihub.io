@@ -1,62 +1,679 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>圆角矩形按钮</title>
-	<style>
-		body {
-			background-image: url("https://www.example.com/background-image.jpg"); /* 这里需要替换成你想使用的背景图片链接 */
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-		.button {
-			background-color: #4CAF50; /* 这里可以修改按钮背景色 */
-			border: none;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin: 4px 2px;
-			cursor: pointer;
-			border-radius: 30px; /* 这里可以修改按钮圆角度数 */
-		}
-		.row::after {
-			content: "";
-			clear: both;
-			display: table;
-		}
-		.col {
-			float: left;
-			width: 33.33%; /* 如果要调整宽度，需要同时调整这里和 .button 的 padding */
-			padding: 0 20px;
-			box-sizing: border-box;
-		}
-	</style>
-</head>
-<body>
-	<div class="row">
-		<div class="col">
-			<a href="https://www.example.com/link1"><button class="button">按钮1</button></a>
-		</div>
-		<div class="col">
-			<a href="https://www.example.com/link2"><button class="button">按钮2</button></a>
-		</div>
-		<div class="col">
-			<a href="https://www.example.com/link3"><button class="button">按钮3</button></a>
-		</div>
-	</div>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
 
-	<div class="row">
-		<div class="col">
-			<a href="https://www.example.com/link4"><button class="button">按钮4</button></a>
-		</div>
-		<div class="col">
-			<a href="https://www.example.com/link5"><button class="button">按钮5</button></a>
-		</div>
-		<div class="col">
-			<a href="https://www.example.com/link6"><button class="button">按钮6</button></a>
-		</div>
-	</div>
-</body>
-</html>
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fd34a1e3-81cd-45c7-b20d-c825c0103421" class="page sans"><header><h1 class="page-title">JavaScript</h1></header><div class="page-body"><h2 id="d2d77fae-e93d-4b1d-a98d-ffe5799826bf" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#%E4%BB%80%E4%B9%88%E6%98%AF_javascript">什么是 JavaScript?</a></h2><p id="4ff99cf5-bec3-4c0f-9d0e-c6dc48423f20" class="">JavaScript 是一门跨平台、面向对象的脚本语言，它能使网页可交互（例如拥有复杂的动画，可点击的按钮，通俗的菜单等）。另外还有高级的服务端 Javascript 版本，例如 Node.js，它可以让你在网页上添加更多功能，不仅仅是下载文件（例如在多台电脑之间的协同合作）。在宿主环境（例如 web 浏览器）中，JavaScript 能够通过其所连接的环境提供的编程接口进行控制。</p><p id="26eadc16-cb9a-4e61-a8a0-aa496054309f" class="">JavaScript 内置了一些对象的标准库，比如数组（<code>Array</code>），日期（<code>Date</code>），数学（<code>Math</code>）和一套核心语句，包括运算符、流程控制符以及声明方式等。JavaScript 的核心部分可以通过添加对象来扩展语言以适应不同用途；例如：</p><ul id="7bfe3b40-9a09-4e25-8975-a792fe43efd1" class="bulleted-list"><li style="list-style-type:disc">客户端的 JavaScript 通过提供对象，控制浏览器及其文档对象模型（DOM），来扩展语言核心。例如：客户端的拓展代码允许应用程序将元素放在某个 HTML 表单中，并且支持响应用户事件，比如鼠标点击、表单提交和页面导航。</li></ul><ul id="bf475e8a-c52b-4de2-a3f8-94d44fca77ff" class="bulleted-list"><li style="list-style-type:disc">服务端的 JavaScript 则通过提供有关在服务器上运行 JavaScript 的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作。</li></ul><p id="b96b6cd4-503d-43ab-8c03-b411fdbbb80a" class="">这意味着，在浏览器中，JavaScript 可以改变网页（DOM）的外观与样式。同样地，在服务器上，Node.js 中的 JavaScript 可以对浏览器上编写的代码发出的客户端请求做出响应。</p><h2 id="a58b9edf-76ac-4e0f-8c6d-2cd818edcf1d" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#javascript_%E5%92%8C_java">JavaScript 和 Java</a></h2><p id="d896fa0c-2f6a-4f7c-8569-4f99a15d3d2e" class="">JavaScript 和 Java 有一些共性但是在另一些方面有着根本性区别。JavaScript 语言类似 Java 但是并没有 Java 的静态类型和强类型检查特性。JavaScript 遵循了 Java 的表达式语法，命名规范以及基础流程控制，这也是 JavaScript 从 LiveScript 更名的原因。</p><p id="e12ca021-4d72-4675-b9a4-a6e59a20d03d" class="">与 Java 通过声明的方式构建类的编译时系统不同，JavaScript 采用基于少量的数据类型如数字、布尔、字符串值的运行时系统。JavaScript 拥有基于原型的对象模型提供的动态继承；也就是说，独立对象的继承是可以改变的。JavaScript 支持匿名函数。函数也可以作为对象的属性被当做宽松的类型方式执行。</p><p id="6e451e33-bb97-459e-be7a-3b450985b244" class="">与 Java 相比，Javascript 是一门形式自由的语言。你不必声明所有的变量，类和方法。你不必关心方法是否是公有、私有或者受保护的，也不需要实现接口。无需显式指定变量、参数、方法返回值的数据类型。</p><p id="b6081986-f3be-4cf9-a485-d47002f70e94" class="">Java 是基于类的编程语言，设计的初衷就是为了确保快速执行和类型安全。类型安全，举个例子，你不能将一个 Java 整数变量转化为一个对象引用，或者由 Java 字节码访问专有存储器。Java 基于类的模型，意味着程序包含专有的类及其方法。Java 的类继承和强类型要求紧耦合的对象层级结构。这些要求使得 Java 编程比 JavaScript 要复杂的多。</p><p id="2ad9a64a-afea-4bb1-81af-f3cbf6f7d706" class="">相比之下，JavaScript 传承了 HyperTalk 和 dBASE 语句精简、动态类型等精髓，这些脚本语言为更多开发者提供了一种语法简单、内置功能强大以及用最小需求创建对象的编程工具。</p><table id="4044fa39-b607-4505-8071-dd5eca6df587" class="simple-table"><tbody><tr id="25df7e55-7ce0-4052-accc-afbf469862b2"><td id="RgH&gt;" class="">JavaScript</td><td id="qK[b" class="">Java</td></tr><tr id="835f9cc1-7b31-4660-be2e-3f49616d5bb6"><td id="RgH&gt;" class="">面向对象。不区分对象类型。通过原型机制继承，任何对象的属性和方法均可以被动态添加。</td><td id="qK[b" class="">基于类系统。分为类和实例，通过类层级的定义实现继承。不能动态增加对象或类的属性或方法。</td></tr><tr id="cc4a30ec-5c73-47e2-b020-5e634e45681a"><td id="RgH&gt;" class="">变量类型不需要提前声明 (动态类型)。</td><td id="qK[b" class="">变量类型必须提前声明 (静态类型)。</td></tr><tr id="0e92f1ec-2358-4cbe-af17-b593a1fba59e"><td id="RgH&gt;" class="">不能直接自动写入硬盘。</td><td id="qK[b" class="">可以直接自动写入硬盘。</td></tr></tbody></table><p id="1aaecb7c-5831-4220-9146-70527242f088" class="">请查看章节 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">对象模型的详情</a> 来了解更多 JavaScript 和 Java 的不同。</p><h2 id="c9cf2a76-1d10-46bf-86fe-032fbcf43546" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#javascript_%E5%92%8C_ecmascript_%E8%A7%84%E8%8C%83">JavaScript 和 ECMAScript 规范</a></h2><p id="5d966980-2ce8-4843-9fa2-bc72fcb6dc9d" class="">JavaScript 的标准化组织是 <a href="https://www.ecma-international.org/">ECMA</a> ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的 JavaScript 被称作 ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的 JavaScript 实现版本。ECMAScript 标准在 ECMA－262 规范中进行文档化。参照 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript">JavaScript 的新特性</a> 以便学习更多关于不同版本的 JavaScript 和 ECMAScript 规范版本。</p><p id="447a0aa3-2d4f-4769-befd-a73bc81d342b" class="">ECMA-262 标准也通过了 国际标准化组织（<a href="http://www.iso.ch/">ISO</a>）的 ISO-16262。你可以<a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">在这里</a>找到该规范文件。ECMAScript 规范并没有描述文档对象模型（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model">DOM</a>），该模型由 万维网联盟（<a href="https://www.w3.org/">W3C</a>）制定。DOM 定义了 HTML 文件对象被脚本操作的方法。为了更清楚地了解当使用 JavaScript 编程时用到的不同技术，请参阅 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/JavaScript_technologies_overview">JavaScript 技术概述</a>。</p><h3 id="0e93bc47-fa4e-4f23-96bf-6f520d8ce296" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#javascript_%E6%96%87%E7%8C%AE_%E5%92%8C_ecmascript_%E8%A7%84%E8%8C%83">JavaScript 文献 和 ECMAScript 规范</a></h3><p id="68c13f21-d075-48ff-9f70-6d32707261ee" class="">ECMAScript 规范是实现 ECMAScript 的一组需求;如果您想在 ECMAScript 实现或引擎 (如 Firefox 中的 SpiderMonkey 或 Chrome 中的 V8) 中实现符合标准的语言特性，那么它是非常有用的。</p><p id="a52ae530-8f50-42f3-99be-82b9db733c9c" class="">ECMAScript 文档不是用来帮助脚本程序员的;使用 JavaScript 文档获取关于编写脚本的信息。</p><p id="e76fdf9c-6e91-4822-a8d0-bac55b0e75a6" class="">ECMAScript 规范使用了 JavaScript 程序员可能不熟悉的术语和语法。尽管 ECMAScript 中对语言的描述可能有所不同，但语言本身保持不变。JavaScript 支持 ECMAScript 规范中列出的所有功能。</p><p id="222bda8a-2b19-418c-ac7e-f35706e13c5e" class="">JavaScript 文档描述了适合 JavaScript 程序员的语言方面。</p><h2 id="ee65b481-8451-4b01-83e1-dec86d4276b2" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#javascript_%E5%85%A5%E9%97%A8">JavaScript 入门</a></h2><p id="647e3c39-0846-4950-87a8-5adbe906852e" class="">开始使用 JavaScript 很容易，你只需要一个现代 Web 浏览器。这篇教程包含了一些只在最新版本的火狐浏览器上才有的功能，所以建议大家使用最新版本的火狐浏览器。</p><p id="b53655fd-1fee-4635-a2c7-e2f9d28028dd" class="">火狐浏览器内置的 Web 控制台非常适合学习 JavaScript,Web 控制台包含两个输入模式——单行模式、多行模式。</p><h3 id="a6e70b98-0366-4efd-ad6b-48b37e34d4a3" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#%E5%8D%95%E8%A1%8C%E6%A8%A1%E5%BC%8F">单行模式</a></h3><p id="4f98db45-11ae-493c-b1eb-b9cb5b0e5619" class=""><a href="https://developer.mozilla.org/zh-CN/docs_Tools/Web_Console">Web 控制台</a> 不仅可以展示当前已加载页面的信息，还包含一个可以在当前页面执行 Javascript 表达式的 <a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/index.html#the_command_line_interpreter">命令行。</a></p><p id="a2ab664a-4567-4cfe-8a64-05324a2c4557" class="">在火狐浏览器菜单栏的“工具&quot; =&gt; &quot;浏览器工具&quot; =&gt; &quot;Web 开发者工具&quot;( 在 Windows 和 Linux 上Ctrl+Shift+I ，Mac 上Cmd+Option+K)，选择&quot;Web 开发者工具栏&quot;的控制台选项卡，它会如期出现在浏览器窗口的底部。如图，最下一行就是可以执行输入的命令行，面板上可以显示执行结果：</p><figure id="908f697d-a0e0-4e99-9918-3c4e75ca893d" class="image"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction/2019-04-04_00-15-29.png"><img style="width:700px" src="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction/2019-04-04_00-15-29.png"/></a></figure><p id="7d32b35b-3527-40c9-8c27-c963c5eae57b" class="">控制台的工作方式与 eval 完全相同：返回最后输入的表达式。为了简单起见，可以想象每次输入到控制台的东西实际上都被 console.log 所包围。</p><p id="c6353695-9cb7-4026-89da-295a631f9f05" class=""><code>console.log(eval(&#x27;3 + 5&#x27;))
+</code>Copy to Clipboard</p><h3 id="4a746cb8-6708-4ad0-bc8f-74174c5184b0" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#%E5%A4%9A%E8%A1%8C%E6%A8%A1%E5%BC%8F">多行模式</a></h3><p id="beda14f4-23c4-42d1-900c-efac5b4aa428" class="">Web 控制台的单行模式非常适合用来测试单个的 JavaScript 表达式，对于复杂的 JavaScript 表达式或者一定规模的代码块就显得力不从心了。这正是<a href="https://firefox-source-docs.mozilla.org/devtools-user/web_console/the_command_line_interpreter/index.html#multi-line-mode">多行模式</a>要解决的！</p><h3 id="ad251f00-b5db-4c76-b5fb-67678130ccac" class=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Introduction#hello_world">Hello world</a></h3><p id="0978a486-a591-4b52-b2e8-ad4e59fdef29" class="">让我们用 Web 控制台的多行模式来写一个“Hello World&quot;程序吧！JavaScript code:</p><p id="84028694-6647-4df1-be71-5269c96d20a1" class=""><code>(function(){
+  &quot;use strict&quot;;
+  function greetMe(yourName) {
+    alert(&#x27;Hello &#x27; + yourName);
+  }
+
+  greetMe(&#x27;World&#x27;);
+})();
+
+</code>Copy to Clipboard</p><p id="44f6573f-dfff-4015-bcbb-472cec27361f" class="">输入完成后，按下Cmd+Enter或者Ctrl+Enter(或者单击运行按钮) 就可以在浏览器中看到执行结果了！</p><p id="7abcba40-e3d1-4ec9-b3c4-1b4ad5aba07d" class="">在接下来的章节里，我们将向你介绍 JavaScript 的语法以及语言特性，届时你将可以使用它编写更加复杂的程序。</p><p id="07226e46-0eee-44f6-bd03-a4f0d7c9a9e6" class="">但是现在请记住，始终将 <code>(function(){&quot;use strict&quot;;</code> 添加到你的代码之前，始终将<code>})();</code>添加到你的代码之后。<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode">严格模式</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/IIFE">IIFE</a>这两篇文章详细解释了它们的作用。现在关于它们的作用你只要知道以下两点：</p><ol type="1" id="3d8bfce8-d37e-42ea-83c4-f26f0a53dfb2" class="numbered-list" start="1"><li>防止 JavaScript 的语义影响初学者</li></ol><ol type="1" id="c9d80a2f-a95d-4f08-b5df-ceefb765e6a2" class="numbered-list" start="2"><li>防止控制台中的代码片段之间发生意料之外的交互</li></ol></div></article></body></html>
